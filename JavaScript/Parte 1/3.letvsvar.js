@@ -1,7 +1,7 @@
 let ok = true;
 
 if(ok) {
-    let num = 14;
+    let num = 45;
 }
 
 // console.log(num); -> ERROR (con var muestra 14)
