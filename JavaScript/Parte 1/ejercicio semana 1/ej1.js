@@ -10,6 +10,29 @@
 
 console.log('--------------- APARTADO 1 -----------------');
 
+console.log('--------------- APARTADO 1 -----------------');
+
+function ejercicio1(cadena1, cadena2) {
+    if(typeof cadena1 !== "string" || typeof cadena2 !== "string") {
+        console.error("Una de los parámetros no es un string");
+        return;
+    }
+
+    if(cadena1.length > cadena2.length) {
+        console.log(`'${cadena1}' es mayor que '${cadena2}'`);
+    } else if (cadena2.length > cadena1.length) {
+        console.log(`'${cadena2}' es mayor que '${cadena1}'`);
+    } else {
+        console.log("Las cadenas son iguales");
+    }
+}
+
+ejercicio1("casa", "caracol");
+ejercicio1("casa", "cosa");
+ejercicio1("Hola que tal", "bien");
+// ejercicio1("Hola", 24);
+ejercicio1();
+
 /**
  * Apartado 2
  * Crea una función que reciba 2 números por parámetro, el primer número indicará cuantas veces debemos imprimir el segundo
@@ -19,6 +42,18 @@ console.log('--------------- APARTADO 1 -----------------');
  */
 
 console.log('--------------- APARTADO 2 -----------------');
+
+function ejercicio2(veces, num) {
+    let resultado = "";
+    for(let i = 0; i < veces; i++) {
+        resultado += num + " ";
+        num *= 2;
+    }
+    console.log(resultado);
+}
+
+ejercicio2(10, 2);
+ejercicio2(4, 5);
 
 /**
  * Apartado 3
