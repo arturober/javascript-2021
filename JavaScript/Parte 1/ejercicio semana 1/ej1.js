@@ -66,6 +66,25 @@ ejercicio2(4, 5);
 
 console.log('--------------- APARTADO 3 -----------------');
 
+function apartado3(cadena, car) {
+    cadena = "" + cadena;
+    car = "" + car;
+    if(car.length !== 1) {
+        console.error("El segundo parámetro debe se un carácter");
+    } else {
+        let cont = 0;
+        for(let i = 0; i < cadena.length; i++) {
+            if(cadena[i] === car) {
+                cont++;
+            }
+        };
+        console.log(`Se ha encontrado el carácter '${car}' ${cont} veces en la cadena ${cadena}`);
+    }
+}
+
+apartado3("Hola que tal", "a");
+apartado3("momomomomomo", "m");
+
 /**
  * Apartado 4
  * Crea una función que reciba 3 parámetros (nombre de producto, precio e impuesto en porcentaje sobre 100).
@@ -78,6 +97,22 @@ console.log('--------------- APARTADO 3 -----------------');
 
 console.log('--------------- APARTADO 4 -----------------');
 
+function apartado4(nombre = "Producto genérico", precio = 100, impuesto = 21) {
+    precio = +precio;
+    impuesto = +impuesto;
+
+    if(Number.isNaN(precio) || Number.isNaN(impuesto)) {
+        console.error("Error: El precio o impuesto no son númericos");
+    } else {
+        console.log(`El producto ${nombre} tiene un precio de ${precio * (1 + impuesto / 100)}`);
+    }
+}
+
+apartado4();
+apartado4("Silla");
+apartado4("Coche", 20000, 17);
+apartado4("Mesa", "Hola", 23)
+
 /**
  * Apartado 5
  * Crea una función de tipo flecha (arrow function) que reciba 2 parámetros. Una cadena completa y un trozo de cadena a buscar.
@@ -89,4 +124,15 @@ console.log('--------------- APARTADO 4 -----------------');
  */
 
 console.log('--------------- APARTADO 5 -----------------');
+
+const apartado5 = (cadena, trozo) => {
+    if(cadena.toLocaleLowerCase().includes(trozo.toLocaleLowerCase())) {
+        console.log(`La cadena '${cadena}' incluye '${trozo}'`);
+    } else {
+        console.log(`La cadena '${cadena}' NO incluye '${trozo}'`);
+    }
+}
+
+apartado5("Estoy dando clase", "CLASE");
+apartado5("Estoy dando clase", "perro");
 
