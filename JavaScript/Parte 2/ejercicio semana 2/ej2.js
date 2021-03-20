@@ -26,7 +26,7 @@ console.log('--------------- APARTADO 2 -----------------');
 
 /**
  * Apartado 3
- * Crea un array de cadenas y ordénalo usando el método sort de mayor a menor longitud .
+ * Crea un array de cadenas y ordénalo usando el método sort de mayor a menor longitud.
  * Imprime el array original (antes de ordenarlo) y el resultado
  */
 
