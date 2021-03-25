@@ -1,0 +1,15 @@
+.form-control.is-valid ~ .invalid-feedback {
+    display: none;
+}
+
+@media (min-width: 576px) {
+    .card-columns {
+        column-count: 2;
+    }
+}
+
+@media (min-width: 992px) {
+    .card-columns {
+        column-count: 3;
+    }
+}
