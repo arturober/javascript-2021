@@ -1,0 +1,20 @@
+.table{
+    display: table;
+    margin: 20px;
+}
+
+.row{
+    display: table-row;
+    height: 50px;
+    width: 50px;
+}
+
+.cell{
+    display: table-cell;
+    border: solid;
+    border-width: thin;
+    height: 50px;
+    width: 50px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
