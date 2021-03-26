@@ -17,7 +17,7 @@ class ProductService {
     }
 
     // Devuelve la promesa del método Http.ajax con su correspondiente llamada al servidor
-    delete(idProduct) { 
-        return this.http.delete(`${SERVER}/products/${idProduct}`);
+    async delete(idProduct) { 
+        await this.http.delete(`${SERVER}/products/${idProduct}`);
     }
 }
