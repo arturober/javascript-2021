@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>`
+    <style>
+        img {
+            height: 40px;
+        }
+
+        td {
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+    <form id="addProduct">
+        <p>
+            <input type="text" name="name" id="name" placeholder="Product's name" required>
+        </p>
+        <p>
+            <input type="text" name="description" id="description" placeholder="Description" required>
+        </p>
+        <p>
+            Photo: <input type="file" name="photo" id="photo" required>
+        </p>
+        <div>
+            <img src="" id="imagePreview">
+        </div>
+        <button type="submit">Add</button>
+    </form>
+    <table id="productos">
+        <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <script src="10.productos-ajax.js"></script>
+</body>
+</html>

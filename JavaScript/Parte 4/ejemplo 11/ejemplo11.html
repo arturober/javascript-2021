@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <title></title>
+    <meta content="">
+    <style>
+      td {
+        vertical-align: middle;
+      }
+      #productContainer img {
+        width: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <form action="#" id="addProduct">
+      <p>Name: <input type="text" name="name"></p>
+      <p>Description: <input type="text" name="desc"></p>
+      <p>Image: <input type="file" name="image"></p>
+      <p><img src="" id="preview" alt=""></p>
+      <p><button type="submit">Send</button></p>
+    </form>
+    <table>
+      <tbody id="productContainer"></tbody>
+    </table>
+    <script src="constants.js"></script>
+    <script src="http.class.js"></script>
+    <script src="product-service.class.js"></script>
+    <script src="ejemplo11.js"></script>
+  </body>
+</html>
