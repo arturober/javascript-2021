@@ -1,0 +1,19 @@
+{
+  "name": "productos-npm",
+  "version": "0.0.1",
+  "description": "Ejemplo productos",
+  "main": "constants.js",
+  "scripts": {
+    "prestart": "npm run test",
+    "start": "start chrome ejemplo12.html",
+    "test": "eslint src/*"
+  },
+  "author": "Arturo",
+  "license": "ISC",
+  "dependencies": {
+    "moment": "~2.29.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.23.0"
+  }
+}
