@@ -1,5 +1,6 @@
 "use strict";
 
+let eventoService = new EventoService();
 let eventList = [];
 let newEventForm = null;
 
@@ -9,8 +10,8 @@ document.addEventListener("DOMContentLoaded", async e => {
     newEventForm.image.addEventListener('change', loadImage);
     newEventForm.addEventListener('submit', validateForm);
 
-    eventList = await Evento.getEvents();
-    showEvents(eventList);
+    eventList = await eventoService.getEvents();
+    eventList.forEach(e => showEvent(e));
 });
 
 async function validateForm(event) {
@@ -33,13 +34,12 @@ async function validateForm(event) {
         const image = document.getElementById("imgPreview").src;
         const date = newEventForm.date.value;
         const description = newEventForm.description.value;
-        const price = newEventForm.price.value;
+        const price = +newEventForm.price.value;
 
-        let newEvent = new Evento({title, image, date, description, price});
+        let newEvent = {title, image, date, description, price};
         try {
-            const evento = await newEvent.post();
-            eventList.push(evento);
-            showEvents(eventList)
+            const evento = await eventoService.post(newEvent);
+            showEvent(evento);
             newEventForm.reset();
             newEventForm.querySelectorAll(".is-valid").forEach(input => input.classList.remove("is-valid"));
             document.getElementById("imgPreview").src = '';
@@ -60,23 +60,58 @@ function loadImage(event) {
     });
 }
 
-function showEvents(events) {
+function showEvent(event) {
     let container = document.getElementById("eventsContainer");
-    while (container.firstChild) { // Delete all children
-        container.removeChild(container.firstChild);
-    }
 
-    events.forEach(event => {       
-        let eventCard = event.toHTML();
-        // Añadimos el evento de borrado al botón "Delete"
-        eventCard.querySelector('.card-body .btn-danger').addEventListener("click", async e => {
-            let del = confirm("¿Seguro que quieres borrar el evento?");
-            if(del) {
-                await event.delete();
-                eventList.splice(eventList.indexOf(event), 1);
-                showEvents(eventList);
-            }  
-        });
-        container.appendChild(eventCard);
+    let card = document.createElement("div");
+    card.classList.add("card");
+
+    let img = document.createElement("img");
+    img.classList.add("card-img-top");
+    img.src = event.image;
+    card.append(img);
+
+    let cardBody = document.createElement("div");
+    cardBody.classList.add("card-body");
+    card.append(cardBody);
+
+    let cardTitle = document.createElement("h4");
+    cardTitle.classList.add("card-title");
+    cardTitle.textContent = event.title;
+    cardBody.append(cardTitle);
+
+
+    let cardText = document.createElement("p");
+    cardText.classList.add("card-text");
+    cardText.innerText = event.description;
+    cardBody.append(cardText);
+
+    let delButton = document.createElement("button");
+    delButton.className = "btn btn-danger";
+    delButton.innerText = "Delete";
+    cardBody.append(delButton);
+
+    let cardFooter = document.createElement("div");
+    cardFooter.classList.add("card-footer");
+    card.append(cardFooter);
+
+    let footerText = document.createElement("small");
+    footerText.classList.add("text-muted");
+    const date = new Date(event.date);
+    footerText.textContent = `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`;
+    cardFooter.append(footerText);
+
+    let priceText = document.createElement("span");
+    priceText.classList.add("float-right");
+    priceText.textContent = (+event.price).toFixed(2) + "€";
+    footerText.append(priceText);
+
+    delButton.addEventListener("click", async e => {
+        let del = confirm("¿Seguro que quieres borrar el evento?");
+        if(del) {
+            await eventoService.delete(event.id);
+            card.remove();
+        }  
     });
+    container.append(card);
 }
