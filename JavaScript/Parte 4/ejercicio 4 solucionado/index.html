@@ -1,0 +1,73 @@
+<html>
+
+<head>
+  <title>Eventos | Ejercicio 4</title>
+  <meta charset="UTF-8">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link rel="stylesheet" href="exercise4.css">
+</head>
+
+<body>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+    <a class="navbar-brand" href="index.html">Events manager</a>
+  </nav>
+
+  <div class="container">
+    <form action="#" class="mt-4" id="newEvent">
+      <div class="form-group">
+        <label for="name">Nombre</label>
+        <input type="text" class="form-control" name="name" id="name" placeholder="Nombre">
+        <div class="invalid-feedback">Campo requerido.</div>
+      </div>
+      <div class="form-group">
+        <label for="date">Fecha</label>
+        <input type="date" class="form-control" id="date" name="date">
+        <div class="invalid-feedback">Campo requerido.</div>
+      </div>
+      <div class="form-group">
+        <label for="description">Descripción</label>
+        <textarea class="form-control" id="description" name="description" rows="3" placeholder="Descripción"></textarea>
+        <div class="invalid-feedback">Campo requerido.</div>
+      </div>
+      <div class="form-group">
+        <label for="price">Precio (en €)</label>
+        <input type="number" class="form-control" id="price" name="price" min="0.00" max="10000.00" step="0.01" />
+        <div class="invalid-feedback">Campo requerido.</div>
+      </div>
+      <div class="form-group">
+        <label for="image">Imagen</label>
+        <input type="file" class="form-control" id="image" name="image">
+        <div class="invalid-feedback">Campo requerido.</div>
+      </div>
+      <img src="" alt="" id="imgPreview" class="img-thumbnail">
+
+      <button type="submit" class="btn btn-primary">Añadir</button>
+    </form>
+
+    <div id="eventsContainer" class="card-columns">
+      <!-- <div class="card-deck mb-4">
+        <div class="card">
+          <img class="card-img-top" src="image_base64">
+          <div class="card-body">
+            <h4 class="card-title">Event’s name</h4>
+            <p class="card-text">This is the description.</p>
+            <div><button class="btn btn-danger">Delete</button></div>
+          </div>
+          <div class="card-footer">
+            <small class="text-muted">
+			        dd/mm/yyyy
+			        <span class="float-right">Price€</span>
+	          </small>
+          </div>
+        </div>
+      </div> -->
+    </div>
+  </div>
+
+  <script src="js/constants.js"></script>
+  <script src="js/http.class.js"></script>
+  <script src="js/evento.class.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+</html>
