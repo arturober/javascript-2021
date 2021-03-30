@@ -1,4 +1,5 @@
 const path = require("path");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     devServer: {
@@ -11,16 +12,30 @@ module.exports = {
     devtool: 'source-map',
     context: path.join(__dirname, 'src'),
     entry: {
-        index: './index.ts',
+        index: './index',
     },
     output: {
-        filename: '[name].bundle.js',
+        filename: '[name].bundle.js', // Aquí se deja la extensión .js
         path: path.join(__dirname, '/dist'),
         publicPath: '/', // Raíz del servidor web
     },
+    resolve: {
+        extensions: ['.ts', '.js'] // Se pueden quitar las extensiones al importar archivos
+    },
     module: {
         rules: [
-            
+            {
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                loader: 'ts-loader',
+            },
         ]
     },
+    plugins: [
+        new HtmlWebpackPlugin({
+            filename: 'index.html',
+            template: '../index.html',
+            chunks: ['index'] // Inserta <script src="index.bundle.js">
+        }), // Por defecto genera index.html 
+    ]
 };
