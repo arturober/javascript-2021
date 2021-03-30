@@ -1,0 +1,16 @@
+#addProduct img {
+    max-height: 150px;
+}
+
+td > img {
+    height: 40px;
+}
+
+td {
+    vertical-align: middle;
+}
+
+.delete {
+    color: red;
+    cursor: pointer;
+}

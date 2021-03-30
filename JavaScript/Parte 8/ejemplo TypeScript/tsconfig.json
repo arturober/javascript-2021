@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "target": "es2020", // Compile into ES2020
+        "moduleResolution": "node", // NodeJS require format for importing/exporting modules
+        "module": "es2020",
+        "sourceMap": true, // Useful for debugging
+        "removeComments": false, // For debugging (in production mode they’ll be removed anyway)
+        "alwaysStrict": true, // JavaScript code will have the “use strict” instruction (strict mode).
+        "noImplicitAny": true, // Always type variables, parameters, etc, if the type is not implicit
+    }
+}
