@@ -1,7 +1,8 @@
 import { SERVER } from './constants';
 import { ProductService } from './product-service.class';
 import '../css/styles.css';
-import productsTemplate from './templates/product.handlebars';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const productsTemplate = require('./templates/product.handlebars');
 
 const productService = new ProductService();
 let container;
