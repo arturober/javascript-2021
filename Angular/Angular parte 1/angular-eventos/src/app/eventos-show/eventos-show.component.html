@@ -1,0 +1,16 @@
+<div class="card-columns" *ngIf="eventos && eventos.length; else noEventos">
+  <div class="card" *ngFor="let evento of eventos">
+    <div class="card-body">
+    <h4 class="card-title">{{evento.title}}</h4>
+    <p class="card-text">{{evento.description}}</p>
+    </div>
+    <div class="card-footer text-muted">
+    {{evento.date}}
+    <span class="float-right">{{evento.price}}€</span>
+    </div>
+  </div>
+</div>
+<ng-template #noEventos>
+  <h3>No hay eventos disponibles</h3>
+</ng-template>
+

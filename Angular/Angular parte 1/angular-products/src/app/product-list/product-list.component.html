@@ -1,0 +1,25 @@
+<div class="card">
+  <div class="card-header bg-primary text-white">
+    {{title}}
+  </div>
+  <div class="card-block" *ngIf="productos.length">
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>{{headers.description}}</th>
+            <th>{{headers.price}}</th>
+            <th>{{headers.available}}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of productos">
+            <td>{{producto.description}}</td>
+            <td>{{producto.price | currency:'EUR'}}</td>
+            <td>{{producto.available | date:'dd/MM/yyyy' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
