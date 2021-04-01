@@ -1,0 +1,17 @@
+.par {
+  color: green;
+}
+
+.impar {
+  color: red;
+}
+
+td {
+  vertical-align: middle;
+}
+
+td > img {
+  height: 40px;
+}
+
+
