@@ -1,0 +1,83 @@
+<form class="mt-4" (ngSubmit)="addEvento()">
+  <div class="form-group">
+    <label for="name">Nombre</label>
+    <input
+      type="text"
+      class="form-control"
+      name="title"
+      [(ngModel)]="newEvento.title"
+      placeholder="Enter name"
+    />
+  </div>
+  <div class="form-group">
+    <label for="date">Fecha</label>
+    <input type="date" class="form-control" name="date" [(ngModel)]="newEvento.date" />
+  </div>
+  <div class="form-group">
+    <label for="description">Descripción</label>
+    <textarea class="form-control" name="description" rows="3" [(ngModel)]="newEvento.description"></textarea>
+  </div>
+  <div class="form-group">
+    <label for="price">Precio</label>
+    <input
+      type="number"
+      class="form-control"
+      name="price"
+      min="0.00"
+      max="10000.00"
+      step="0.01"
+      [(ngModel)]="newEvento.price"
+    />
+  </div>
+  <div class="form-group">
+    <label for="image">Imagen</label>
+    <input
+      type="file"
+      class="form-control"
+      name="image"
+      #fileImage
+      (change)="changeImage(fileImage)"
+    />
+  </div>
+  <img [src]="newEvento.image" alt="" class="img-thumbnail" />
+  <button type="submit" class="btn btn-primary">Create</button>
+</form>
+<nav class="navbar navbar-light bg-light justify-content-between mt-3">
+  <ul class="nav nav-pills">
+    <li class="nav-item">
+      <a class="nav-link" href="#" (click)="orderDate()">Orden por fecha</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="#" (click)="orderPrice()">Orden por precio</a>
+    </li>
+  </ul>
+  <form class="form-inline">
+    <input
+      class="form-control mr-sm-2"
+      type="text"
+      [(ngModel)]="search"
+      name="search"
+      placeholder="Search"
+      aria-label="Search"
+    />
+  </form>
+</nav>
+<div
+  class="card-columns mt-4"
+  *ngIf="eventos && eventos.length; else noEventos"
+>
+  <div class="card" *ngFor="let evento of eventos | eventosFilter: search">
+    <img class="card-img-top" [src]="evento.image" />
+    <div class="card-body">
+      <h4 class="card-title">{{ evento.title | titlecase }}</h4>
+      <p class="card-text">{{ evento.description }}</p>
+    </div>
+    <div class="card-footer text-muted">
+      {{ evento.date | date: "dd/MM/yyyy" }}
+      <span class="float-right">{{ evento.price | currency: "EUR" }}</span>
+    </div>
+  </div>
+</div>
+<ng-template #noEventos>
+  <h3>No hay eventos disponibles</h3>
+</ng-template>

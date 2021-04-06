@@ -13,7 +13,7 @@ module.exports = {
     devtool: 'source-map',
     context: path.join(__dirname, 'src'),
     entry: {
-        index: './index.js',
+        index: './index',
         'add-product': './add-product'
     },
     output: {

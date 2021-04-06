@@ -1,7 +1,7 @@
 import { SERVER } from './constants';
 import { Http } from './http.class';
 import { Product } from './interfaces/product';
-import { ProductsReponse } from './interfaces/responses';
+import { ProductsReponse, ProductReponse } from './interfaces/responses';
 
 export class ProductService {
     private http: Http;
@@ -18,13 +18,13 @@ export class ProductService {
     }
 
     // Inserta el producto y devuelve una promesa con el producto insertado (objeto Product)
-    async post(product) {
-        const resp = await this.http.post(`${SERVER}/products`, product);
+    async post(product: Product): Promise<Product> {
+        const resp = await this.http.post<ProductReponse>(`${SERVER}/products`, product);
         return resp.product;
     }
 
     // Devuelve la promesa del método Http.ajax con su correspondiente llamada al servidor
-    async delete(idProduct): Promise<void> {
+    async delete(idProduct: number): Promise<void> {
         await this.http.delete<void>(`${SERVER}/products/${idProduct}`);
     }
 }

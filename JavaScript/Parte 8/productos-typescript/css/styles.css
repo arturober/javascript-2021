@@ -4,3 +4,7 @@ td {
 #productContainer img {
     width: 50px;
 }
+
+tr.par {
+    background-color: rgba(0,0,255, 0.1);
+}
