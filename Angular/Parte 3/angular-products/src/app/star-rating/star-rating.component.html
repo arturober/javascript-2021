@@ -1,0 +1,9 @@
+<div class="star-container" (mouseleave)="auxRating = rating">
+  <span
+    *ngFor="let star of [1, 2, 3, 4, 5]"
+    (mouseenter)="auxRating = star"
+    (click)="changeRating(star)"
+  >
+    {{star <= auxRating ? '★' : '☆' }}
+  </span>
+</div>
