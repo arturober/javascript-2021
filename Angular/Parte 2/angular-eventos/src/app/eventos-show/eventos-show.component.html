@@ -36,12 +36,16 @@
       class="form-control"
       name="image"
       #fileImage
+      [(ngModel)]="nombreImagen"
       (change)="changeImage(fileImage)"
     />
   </div>
-  <img [src]="newEvento.image" alt="" class="img-thumbnail" />
+  <div><img [src]="newEvento.image" alt="" class="img-thumbnail" *ngIf="newEvento.image" /></div>
   <button type="submit" class="btn btn-primary">Create</button>
 </form>
+
+<p>{{newEvento | json}}</p>
+
 <nav class="navbar navbar-light bg-light justify-content-between mt-3">
   <ul class="nav nav-pills">
     <li class="nav-item">
@@ -70,7 +74,7 @@
     <img class="card-img-top" [src]="evento.image" />
     <div class="card-body">
       <h4 class="card-title">{{ evento.title | titlecase }}</h4>
-      <p class="card-text">{{ evento.description }}</p>
+      <p class="card-text" [innerText]="evento.description"></p>
     </div>
     <div class="card-footer text-muted">
       {{ evento.date | date: "dd/MM/yyyy" }}

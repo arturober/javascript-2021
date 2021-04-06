@@ -9,18 +9,15 @@ import { Evento } from '../interfaces/evento';
 export class EventosShowComponent implements OnInit {
   eventos: Evento[];
   search = '';
+  nombreImagen = '';
 
-  newEvento: Evento = {
-    title: '',
-    description: '',
-    image: '',
-    price: 0,
-    date: '',
-  };
+  newEvento: Evento;
 
   constructor() {}
 
   ngOnInit(): void {
+    this.resetForm();
+
     this.eventos = [
       {
         title: 'Evento de prueba',
@@ -50,7 +47,8 @@ export class EventosShowComponent implements OnInit {
   }
 
   addEvento(): void {
-
+    this.eventos = [...this.eventos, this.newEvento];
+    this.resetForm();
   }
 
   changeImage(fileInput: HTMLInputElement): void {
@@ -62,5 +60,16 @@ export class EventosShowComponent implements OnInit {
     reader.addEventListener('loadend', (e) => {
       this.newEvento.image = reader.result as string;
     });
+  }
+
+  resetForm(): void {
+    this.newEvento = {
+      title: '',
+      description: '',
+      image: '',
+      price: 0,
+      date: '',
+    };
+    this.nombreImagen = '';
   }
 }
