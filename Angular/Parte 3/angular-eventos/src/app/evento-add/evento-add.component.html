@@ -1,0 +1,64 @@
+<form class="mt-4" (ngSubmit)="addEvento()">
+  <div class="form-group">
+    <label for="name">Nombre</label>
+    <input
+      type="text"
+      class="form-control"
+      name="title"
+      [(ngModel)]="newEvento.title"
+      placeholder="Enter name"
+    />
+  </div>
+  <div class="form-group">
+    <label for="date">Fecha</label>
+    <input
+      type="date"
+      class="form-control"
+      name="date"
+      [(ngModel)]="newEvento.date"
+    />
+  </div>
+  <div class="form-group">
+    <label for="description">Descripción</label>
+    <textarea
+      class="form-control"
+      name="description"
+      rows="3"
+      [(ngModel)]="newEvento.description"
+    ></textarea>
+  </div>
+  <div class="form-group">
+    <label for="price">Precio</label>
+    <input
+      type="number"
+      class="form-control"
+      name="price"
+      min="0.00"
+      max="10000.00"
+      step="0.01"
+      [(ngModel)]="newEvento.price"
+    />
+  </div>
+  <div class="form-group">
+    <label for="image">Imagen</label>
+    <input
+      type="file"
+      class="form-control"
+      name="image"
+      #fileImage
+      [(ngModel)]="nombreImagen"
+      (change)="changeImage(fileImage)"
+    />
+  </div>
+  <div>
+    <img
+      [src]="newEvento.image"
+      alt=""
+      class="img-thumbnail"
+      *ngIf="newEvento.image"
+    />
+  </div>
+  <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+<p>{{ newEvento | json }}</p>
