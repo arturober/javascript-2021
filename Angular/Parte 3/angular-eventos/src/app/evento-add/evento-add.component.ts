@@ -18,6 +18,7 @@ export class EventoAddComponent implements OnInit {
   }
 
   addEvento(): void {
+    this.added.emit(this.newEvento);
     this.resetForm();
   }
 

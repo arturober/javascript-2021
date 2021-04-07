@@ -1,5 +1,6 @@
 import {  Component, OnInit } from '@angular/core';
 import { Evento } from '../interfaces/evento';
+import { EventosService } from '../services/eventos.service';
 
 @Component({
   selector: 'eventos-show',
@@ -10,25 +11,10 @@ export class EventosShowComponent implements OnInit {
   eventos: Evento[];
   search = '';
 
-  constructor() {}
+  constructor(private eventosService: EventosService) {}
 
   ngOnInit(): void {
-    this.eventos = [
-      {
-        title: 'Evento de prueba',
-        description: 'Nos lo pasaremos genial',
-        date: '2021-03-15',
-        image: 'assets/evento1.jpg',
-        price: 23.95,
-      },
-      {
-        title: 'Evento de prueba 2',
-        description: 'Este es peor',
-        date: '2020-08-14',
-        image: 'assets/evento2.png',
-        price: 35.5,
-      },
-    ];
+    this.eventos = this.eventosService.getAll();
   }
 
   orderDate(): void {
@@ -43,5 +29,9 @@ export class EventosShowComponent implements OnInit {
 
   deleteEvento(evento: Evento): void {
     this.eventos = this.eventos.filter(e => e !== evento);
+  }
+
+  addEvento(evento: Evento): void {
+    this.eventos = [...this.eventos, evento];
   }
 }
