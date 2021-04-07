@@ -24,10 +24,16 @@ export class ProductListComponent implements OnInit {
   constructor(private productsService: ProductsService) { }
 
   ngOnInit(): void {
-    this.productos = this.productsService.getProductos();
+    this.productsService.getProductos().subscribe(
+      productos => this.productos = productos
+    );
   }
 
   toggleImage() {
     this.showImage = !this.showImage;
+  }
+
+  addProduct(producto: Producto) {
+    this.productos = [...this.productos, producto];
   }
 }

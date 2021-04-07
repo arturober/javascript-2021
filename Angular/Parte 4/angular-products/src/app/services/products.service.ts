@@ -1,35 +1,40 @@
+import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable, throwError } from 'rxjs';
+import { catchError, delay, map, retry } from 'rxjs/operators';
 import { Producto } from '../interfaces/producto';
+import { ProductsResponse, ProductResponse } from '../interfaces/responses';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductsService {
+  private readonly URL = 'products';
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getProductos(): Producto[] {
-    return [{
-      id: 1,
-      description: 'SSD hard drive',
-      available: '2016-10-03',
-      price: 75,
-      imageUrl: 'assets/ssd.jpg',
-      rating: 5,
-    }, {
-      id: 2,
-      description: 'LGA1151 Motherboard',
-      available: '2016-09-15',
-      price: 96.95,
-      imageUrl: 'assets/motherboard.jpg',
-      rating: 4
-    }, {
-      id: 3,
-      description: '8x2GB DDR4 3200',
-      available: '2018-12-15',
-      price: 69.50,
-      imageUrl: 'assets/ram.jpg',
-      rating: 3
-    }]
+  getProductos(): Observable<Producto[]> {
+    return this.http.get<ProductsResponse>(this.URL).pipe(
+      map(resp => resp.products),
+      catchError((error: HttpErrorResponse) => {
+        return throwError(`Error getting products. Status: ${error.status}. Message: ${error.message}`);
+      })
+    );
+  }
+
+  getProducto(id: number): Observable<Producto> {
+    return this.http.get<ProductResponse>(`${this.URL}/${id}`).pipe(
+      map(resp => resp.product)
+    );
+  }
+
+  addProducto(producto: Producto): Observable<Producto> {
+    return this.http.post<ProductResponse>(this.URL, producto).pipe(
+      map(resp => resp.product)
+    );
+  }
+
+  changeRating(idProd: number, rating: number): Observable<void> {
+    return this.http.put<void>(`${this.URL}/${idProd}/rating`, {rating});
   }
 }

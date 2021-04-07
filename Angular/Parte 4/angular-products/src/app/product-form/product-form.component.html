@@ -1,0 +1,48 @@
+<div class="card">
+  <div class="card-header bg-success text-white">
+    Add product
+  </div>
+  <div class="card-block p-3">
+    <form (ngSubmit)="addProduct()">
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-sm-right">Description</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="description" [(ngModel)]="newProduct.description">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-sm-right">Price</label>
+        <div class="col-sm-10">
+          <input type="number" class="form-control" name="price" [(ngModel)]="newProduct.price">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label class="col-sm-2 col-form-label text-sm-right">Available</label>
+        <div class="col-sm-10">
+          <input type="date" class="form-control" name="available" [(ngModel)]="newProduct.available">
+        </div>
+      </div>
+      <div class="form-group row">
+        <label for="inputEmail3" class="col-sm-2 col-form-label text-sm-right">
+          Image</label>
+        <div class="col-sm-10">
+          <input type="file" name="image" class="form-control" accept="image/*" (change)="loadImage(imageInput)"
+            #imageInput [(ngModel)]="imageFile">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-10 offset-sm-2">
+          <img class="product-img" [src]="newProduct.imageUrl" />
+        </div>
+      </div>
+      <div class="form-group row">
+        <div class="offset-sm-2 col-sm-10">
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+        </div>
+      </div>
+    </form>
+    <!-- <p>{{newProduct | json}}</p> -->
+  </div>
+</div>
