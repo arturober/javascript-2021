@@ -1,28 +1,29 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Evento } from '../interfaces/evento';
+import { EventoResponse, EventosResponse } from '../interfaces/responses';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventosService {
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
-  getAll(): Evento[] {
-    return [
-      {
-        title: 'Evento de prueba',
-        description: 'Nos lo pasaremos genial',
-        date: '2021-03-15',
-        image: 'assets/evento1.jpg',
-        price: 23.95,
-      },
-      {
-        title: 'Evento de prueba 2',
-        description: 'Este es peor',
-        date: '2020-08-14',
-        image: 'assets/evento2.png',
-        price: 35.5,
-      },
-    ];
+  getAll(): Observable<Evento[]> {
+    return this.http.get<EventosResponse>('eventos').pipe(
+      map(resp => resp.eventos)
+    );
+  }
+
+  insert(evento: Evento): Observable<Evento> {
+    return this.http.post<EventoResponse>('eventos', evento).pipe(
+      map(resp => resp.evento)
+    );
+  }
+
+  delete(id: number): Observable<void> {
+    return this.http.delete<void>(`eventos/${id}`);
   }
 }

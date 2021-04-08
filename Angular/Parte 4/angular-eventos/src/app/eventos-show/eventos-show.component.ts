@@ -14,7 +14,9 @@ export class EventosShowComponent implements OnInit {
   constructor(private eventosService: EventosService) {}
 
   ngOnInit(): void {
-    this.eventos = this.eventosService.getAll();
+    this.eventosService.getAll().subscribe(
+      eventos => this.eventos = eventos
+    );
   }
 
   orderDate(): void {
