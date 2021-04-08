@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { Producto } from '../interfaces/producto';
 import { ProductsService } from '../services/products.service';
 
@@ -10,6 +10,7 @@ import { ProductsService } from '../services/products.service';
 export class ProductItemComponent implements OnInit {
   @Input() producto: Producto;
   @Input() showImage: true;
+  @Output() deleted = new EventEmitter<void>();
 
   constructor(private productsService: ProductsService) { }
 
@@ -25,5 +26,11 @@ export class ProductItemComponent implements OnInit {
         console.error(error);
       }
     });
+  }
+
+  deleteProducto() {
+    this.productsService.deleteProducto(this.producto.id).subscribe(
+      () => this.deleted.emit()
+    );
   }
 }

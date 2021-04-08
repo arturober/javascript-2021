@@ -29,11 +29,15 @@ export class ProductListComponent implements OnInit {
     );
   }
 
-  toggleImage() {
+  toggleImage(): void {
     this.showImage = !this.showImage;
   }
 
-  addProduct(producto: Producto) {
+  addProduct(producto: Producto): void {
     this.productos = [...this.productos, producto];
+  }
+
+  deleteProduct(producto: Producto): void {
+    this.productos = this.productos.filter(p => p !== producto);
   }
 }

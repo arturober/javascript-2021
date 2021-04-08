@@ -34,6 +34,10 @@ export class ProductsService {
     );
   }
 
+  deleteProducto(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.URL}/${id}`);
+  }
+
   changeRating(idProd: number, rating: number): Observable<void> {
     return this.http.put<void>(`${this.URL}/${idProd}/rating`, {rating});
   }
