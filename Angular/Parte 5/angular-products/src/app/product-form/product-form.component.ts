@@ -1,4 +1,5 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Producto } from '../interfaces/producto';
@@ -13,6 +14,8 @@ export class ProductFormComponent implements OnInit {
   newProduct!: Producto;
   imageFile = '';
   productAdded = false;
+  fechaMin = '2021-01-01';
+  @ViewChild('formProduct') formProduct: NgForm;
 
   constructor(
     private productsService: ProductsService,

@@ -14,6 +14,7 @@ import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { AppRoutingModule } from './app-routing.module';
+import { MinDateDirective } from './validators/min-date.directive';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { AppRoutingModule } from './app-routing.module';
     StarRatingComponent,
     ProductFormComponent,
     WelcomeComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    MinDateDirective
   ],
   imports: [
     BrowserModule,

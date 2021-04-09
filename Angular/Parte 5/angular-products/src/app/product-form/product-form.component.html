@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-header bg-success text-white">Add product</div>
   <div class="card-block p-3">
-    <form (ngSubmit)="addProduct()">
+    <form (ngSubmit)="addProduct()" #formProduct="ngForm">
       <div class="form-group row">
         <label class="col-sm-2 col-form-label text-sm-right">Description</label>
         <div class="col-sm-10">
@@ -14,16 +14,37 @@
             maxlength="60"
             required
             #descModel="ngModel"
+            [ngClass]="{
+              'is-valid': descModel.touched && descModel.valid,
+              'is-invalid': descModel.touched && descModel.invalid
+            }"
           />
-          <div>Dirty: {{descModel.dirty}}</div>
-          <div>Valid: {{descModel.valid}}</div>
-          <div>Touched: {{descModel.touched}}</div>
-          <div>Value: {{descModel.value}}</div>
-          <div>Errors: {{descModel.errors | json}}</div>
+          <div
+            class="invalid-feedback"
+            *ngIf="descModel.invalid && descModel.errors.required"
+          >
+            La descripción es obligatoria
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="descModel.invalid && descModel.errors.minlength"
+          >
+            Te faltan
+            {{
+              descModel.errors.minlength.requiredLength -
+                descModel.errors.minlength.actualLength
+            }}
+            caracteres
+          </div>
+          <!-- <div>Dirty: {{ descModel.dirty }}</div>
+          <div>Valid: {{ descModel.valid }}</div>
+          <div>Touched: {{ descModel.touched }}</div>
+          <div>Value: {{ descModel.value }}</div>
+          <div>Errors: {{ descModel.errors | json }}</div> -->
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label text-sm-right" >Price</label>
+        <label class="col-sm-2 col-form-label text-sm-right">Price</label>
         <div class="col-sm-10">
           <input
             type="number"
@@ -31,7 +52,13 @@
             name="price"
             [(ngModel)]="newProduct.price"
             required
+            #priceModel="ngModel"
+            [ngClass]="{
+              'is-valid': priceModel.touched && priceModel.valid,
+              'is-invalid': priceModel.touched && priceModel.invalid
+            }"
           />
+          <div class="invalid-feedback">No has puesto precio</div>
         </div>
       </div>
       <div class="form-group row">
@@ -43,7 +70,25 @@
             name="available"
             [(ngModel)]="newProduct.available"
             required
+            [minDate]="fechaMin"
+            #dateModel="ngModel"
+            [ngClass]="{
+              'is-valid': dateModel.touched && dateModel.valid,
+              'is-invalid': dateModel.touched && dateModel.invalid
+            }"
           />
+          <div
+            class="invalid-feedback"
+            *ngIf="dateModel.invalid && dateModel.errors.required"
+          >
+            La fecha está vacía
+          </div>
+          <div
+            class="invalid-feedback"
+            *ngIf="dateModel.invalid && dateModel.errors.minDate"
+          >
+            La fecha debe ser posterior a {{fechaMin | date:'dd/MM/yyyy'}}
+          </div>
         </div>
       </div>
       <div class="form-group row">
@@ -60,7 +105,13 @@
             #imageInput
             [(ngModel)]="imageFile"
             required
+            #imgModel="ngModel"
+            [ngClass]="{
+              'is-valid': imgModel.touched && imgModel.valid,
+              'is-invalid': imgModel.touched && imgModel.invalid
+            }"
           />
+          <div class="invalid-feedback">Debes seleccionar una imagen</div>
         </div>
       </div>
       <div class="row">
@@ -70,7 +121,13 @@
       </div>
       <div class="form-group row">
         <div class="offset-sm-2 col-sm-10">
-          <button type="submit" class="btn btn-primary">Submit</button>
+          <button
+            type="submit"
+            class="btn btn-primary"
+            [disabled]="formProduct.invalid"
+          >
+            Submit
+          </button>
         </div>
       </div>
     </form>
