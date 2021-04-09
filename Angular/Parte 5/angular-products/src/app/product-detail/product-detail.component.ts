@@ -26,7 +26,8 @@ export class ProductDetailComponent implements OnInit {
     //       product => {
     //         this.product = product;
     //         this.title.setTitle('Angular Products | ' + product.description);
-    //       }
+    //       },
+    //       error => this.router.navigate(['/products'])
     //     );
     //   }
     // );

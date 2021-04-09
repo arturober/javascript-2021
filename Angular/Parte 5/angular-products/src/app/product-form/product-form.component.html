@@ -1,33 +1,66 @@
 <div class="card">
-  <div class="card-header bg-success text-white">
-    Add product
-  </div>
+  <div class="card-header bg-success text-white">Add product</div>
   <div class="card-block p-3">
     <form (ngSubmit)="addProduct()">
       <div class="form-group row">
         <label class="col-sm-2 col-form-label text-sm-right">Description</label>
         <div class="col-sm-10">
-          <input type="text" class="form-control" name="description" [(ngModel)]="newProduct.description">
+          <input
+            type="text"
+            class="form-control"
+            name="description"
+            [(ngModel)]="newProduct.description"
+            minlength="5"
+            maxlength="60"
+            required
+            #descModel="ngModel"
+          />
+          <div>Dirty: {{descModel.dirty}}</div>
+          <div>Valid: {{descModel.valid}}</div>
+          <div>Touched: {{descModel.touched}}</div>
+          <div>Value: {{descModel.value}}</div>
+          <div>Errors: {{descModel.errors | json}}</div>
         </div>
       </div>
       <div class="form-group row">
-        <label class="col-sm-2 col-form-label text-sm-right">Price</label>
+        <label class="col-sm-2 col-form-label text-sm-right" >Price</label>
         <div class="col-sm-10">
-          <input type="number" class="form-control" name="price" [(ngModel)]="newProduct.price">
+          <input
+            type="number"
+            class="form-control"
+            name="price"
+            [(ngModel)]="newProduct.price"
+            required
+          />
         </div>
       </div>
       <div class="form-group row">
         <label class="col-sm-2 col-form-label text-sm-right">Available</label>
         <div class="col-sm-10">
-          <input type="date" class="form-control" name="available" [(ngModel)]="newProduct.available">
+          <input
+            type="date"
+            class="form-control"
+            name="available"
+            [(ngModel)]="newProduct.available"
+            required
+          />
         </div>
       </div>
       <div class="form-group row">
         <label for="inputEmail3" class="col-sm-2 col-form-label text-sm-right">
-          Image</label>
+          Image</label
+        >
         <div class="col-sm-10">
-          <input type="file" name="image" class="form-control" accept="image/*" (change)="loadImage(imageInput)"
-            #imageInput [(ngModel)]="imageFile">
+          <input
+            type="file"
+            name="image"
+            class="form-control"
+            accept="image/*"
+            (change)="loadImage(imageInput)"
+            #imageInput
+            [(ngModel)]="imageFile"
+            required
+          />
         </div>
       </div>
       <div class="row">
@@ -37,9 +70,7 @@
       </div>
       <div class="form-group row">
         <div class="offset-sm-2 col-sm-10">
-          <button type="submit" class="btn btn-primary">
-            Submit
-          </button>
+          <button type="submit" class="btn btn-primary">Submit</button>
         </div>
       </div>
     </form>

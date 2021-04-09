@@ -12,6 +12,7 @@ import { ProductsService } from '../services/products.service';
 export class ProductFormComponent implements OnInit {
   newProduct!: Producto;
   imageFile = '';
+  productAdded = false;
 
   constructor(
     private productsService: ProductsService,
@@ -40,7 +41,10 @@ export class ProductFormComponent implements OnInit {
 
   addProduct(): void {
     this.productsService.addProducto(this.newProduct).subscribe(
-      product => this.router.navigate(['/products']),
+      product => {
+        this.productAdded = true;
+        this.router.navigate(['/products']);
+      },
       error => console.error(error)
     );
   }

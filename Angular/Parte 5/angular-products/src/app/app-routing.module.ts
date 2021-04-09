@@ -6,11 +6,16 @@ import { WelcomeComponent } from './welcome/welcome.component';
 import { ProductFormComponent } from './product-form/product-form.component';
 import { ProductDetailComponent } from './product-detail/product-detail.component';
 import { ProductResolver } from './resolvers/product.resolver';
+import { ProductFormGuard } from './guards/product-form.guard';
 
 const ROUTES: Routes = [
   { path: 'welcome', component: WelcomeComponent },
   { path: 'products', component: ProductListComponent },
-  { path: 'products/add', component: ProductFormComponent },
+  {
+    path: 'products/add',
+    component: ProductFormComponent,
+    canDeactivate: [ProductFormGuard]
+  },
   {
     path: 'products/:id',
     component: ProductDetailComponent,
