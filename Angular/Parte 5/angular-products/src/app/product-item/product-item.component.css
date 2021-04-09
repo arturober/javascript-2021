@@ -1,0 +1,9 @@
+div:first-child img {
+  height: 40px;
+}
+
+div:not(:first-child) {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
