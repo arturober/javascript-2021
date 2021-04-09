@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { Producto } from '../interfaces/producto';
 import { ProductsService } from '../services/products.service';
@@ -14,10 +15,12 @@ export class ProductFormComponent implements OnInit {
 
   constructor(
     private productsService: ProductsService,
-    private router: Router
+    private router: Router,
+    private title: Title
   ) { }
 
   ngOnInit(): void {
+    this.title.setTitle('Angular Products | Add product');
     this.resetForm();
   }
 

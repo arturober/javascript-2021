@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, OnChanges, DoCheck, Input } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 import { Producto } from '../interfaces/producto';
 import { ProductsService } from '../services/products.service';
 
@@ -21,9 +22,13 @@ export class ProductListComponent implements OnInit {
 
   productos: Producto[] = [];
 
-  constructor(private productsService: ProductsService) { }
+  constructor(
+    private productsService: ProductsService,
+    private titleService: Title
+  ) { }
 
   ngOnInit(): void {
+    this.titleService.setTitle('Angular Products | Product list');
     this.productsService.getProductos().subscribe(
       productos => this.productos = productos
     );
