@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Producto } from '../interfaces/producto';
 import { ProductsService } from '../services/products.service';
 
@@ -10,10 +11,10 @@ import { ProductsService } from '../services/products.service';
 export class ProductFormComponent implements OnInit {
   newProduct!: Producto;
   imageFile = '';
-  @Output() add = new EventEmitter<Producto>();
 
   constructor(
-    private productsService: ProductsService
+    private productsService: ProductsService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -36,10 +37,7 @@ export class ProductFormComponent implements OnInit {
 
   addProduct(): void {
     this.productsService.addProducto(this.newProduct).subscribe(
-      product => {
-        this.add.emit(product);
-        this.resetForm();
-      },
+      product => this.router.navigate(['/products']),
       error => console.error(error)
     );
   }
