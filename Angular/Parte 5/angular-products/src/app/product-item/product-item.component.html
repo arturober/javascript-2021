@@ -1,13 +1,28 @@
 <div class="col-2 pl-2">
-  <button class="btn btn-small btn-outline-danger border-0 mr-2" (click)="deleteProducto()">X</button>
-  <img [src]="producto.imageUrl" *ngIf="showImage" alt=""
-  [title]="producto.description | uppercase">
+  <button
+    class="btn btn-small btn-outline-danger border-0 mr-2"
+    (click)="deleteProducto()"
+  >
+    X
+  </button>
+  <img
+    [src]="producto.imageUrl"
+    *ngIf="showImage"
+    alt=""
+    [title]="producto.description | uppercase"
+  />
 </div>
-<div class="col-4">{{ producto.description }}</div>
-<div class="col">{{ producto.price | currency:'EUR' }}</div>
-<div class="col">{{ producto.available | date:'dd/MM/y' }}</div>
+<div class="col-4">
+  <a [routerLink]="['/products', producto.id]">
+    {{ producto.description }}
+  </a>
+</div>
+<div class="col">{{ producto.price | currency: "EUR" }}</div>
+<div class="col">{{ producto.available | date: "dd/MM/y" }}</div>
 <div class="col">
-  <star-rating [rating]="producto.rating"
-    (ratingChanged)="changeRating($event)">
+  <star-rating
+    [rating]="producto.rating"
+    (ratingChanged)="changeRating($event)"
+  >
   </star-rating>
 </div>

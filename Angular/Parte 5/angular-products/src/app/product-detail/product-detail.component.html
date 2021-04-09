@@ -1,1 +1,20 @@
-<p>product-detail works!</p>
+<div class="card">
+  <div class="card-header bg-primary text-white">
+    {{ product.description }}
+  </div>
+  <div class="card-block p-3 text-center">
+    <img [src]="product.imageUrl" alt="" />
+    <div>Price: {{ product.price | currency: "EUR":"symbol" }}</div>
+    <div>Available since: {{ product.available | date: "dd/MM/y" }}</div>
+    <div>
+      <star-rating
+        [rating]="product.rating"
+      ></star-rating>
+    </div>
+    <div>
+      <button type="button" class="btn btn-default">
+        Volver
+      </button>
+    </div>
+  </div>
+</div>
