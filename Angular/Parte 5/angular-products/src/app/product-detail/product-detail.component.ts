@@ -20,10 +20,22 @@ export class ProductDetailComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.title.setTitle('Angular Products | Product detail');
-    const id = +this.route.snapshot.params.id;
-    this.productsService.getProducto(id).subscribe(
-      product => this.product = product
+    // this.route.params.subscribe(
+    //   (params) => {
+    //     this.productsService.getProducto(params.id).subscribe(
+    //       product => {
+    //         this.product = product;
+    //         this.title.setTitle('Angular Products | ' + product.description);
+    //       }
+    //     );
+    //   }
+    // );
+
+    this.route.data.subscribe(
+      data => {
+        this.product = data.product;
+        this.title.setTitle('Angular Products | ' + this.product.description);
+      }
     );
   }
 
