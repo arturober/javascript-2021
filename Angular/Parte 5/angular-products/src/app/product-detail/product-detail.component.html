@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card" *ngIf="product">
   <div class="card-header bg-primary text-white">
     {{ product.description }}
   </div>
@@ -9,10 +9,11 @@
     <div>
       <star-rating
         [rating]="product.rating"
+        (ratingChanged)="changeRating($event)"
       ></star-rating>
     </div>
     <div>
-      <button type="button" class="btn btn-default">
+      <button type="button" class="btn btn-danger" (click)="goBack()">
         Volver
       </button>
     </div>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Producto } from '../interfaces/producto';
 import { ProductsService } from '../services/products.service';
 
@@ -15,6 +15,7 @@ export class ProductDetailComponent implements OnInit {
   constructor(
     private title: Title,
     private route: ActivatedRoute,
+    private router: Router,
     private productsService: ProductsService
   ) { }
 
@@ -26,4 +27,18 @@ export class ProductDetailComponent implements OnInit {
     );
   }
 
+  goBack() {
+    this.router.navigate(['/products']);
+  }
+
+  changeRating(rating) {
+    const oldRating = this.product.rating;
+    this.product.rating = rating;
+    this.productsService.changeRating(this.product.id, rating).subscribe({
+      error: error => {
+        this.product.rating = oldRating;
+        console.error(error);
+      }
+    });
+  }
 }
