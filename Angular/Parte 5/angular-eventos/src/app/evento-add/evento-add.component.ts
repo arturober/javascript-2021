@@ -40,7 +40,7 @@ export class EventoAddComponent implements OnInit {
 
   resetForm(): void {
     this.newEvento = {
-      title: '',
+      name: '',
       description: '',
       image: '',
       price: 0,

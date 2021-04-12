@@ -11,6 +11,9 @@ import { EventoAddComponent } from './evento-add/evento-add.component';
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
 import { AppRoutingModule } from './app-routing.module';
 import { EventoDetailComponent } from './evento-detail/evento-detail.component';
+import { LoginComponent } from './login/login.component';
+import { RegistroComponent } from './registro/registro.component';
+import { AuthTokenInterceptor } from './interceptors/auth-token.interceptor';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import { EventoDetailComponent } from './evento-detail/evento-detail.component';
     EventosFilterPipe,
     EventoItemComponent,
     EventoAddComponent,
-    EventoDetailComponent
+    EventoDetailComponent,
+    LoginComponent,
+    RegistroComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +36,11 @@ import { EventoDetailComponent } from './evento-detail/evento-detail.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: BaseUrlInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthTokenInterceptor,
       multi: true,
     }
   ],

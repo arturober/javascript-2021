@@ -1,0 +1,64 @@
+<div class="container">
+  <form class="mt-4" role="form" (ngSubmit)="registrarse()">
+    <legend>Crea una cuenta</legend>
+
+    <div class="form-group">
+      <label for="nombre">Name:</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        name="nameUser"
+        placeholder="Name"
+        [(ngModel)]="nuevoUsuario.name"
+      />
+    </div>
+    <div class="form-group">
+      <label for="correo">Email:</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        name="email"
+        placeholder="Email"
+        [(ngModel)]="nuevoUsuario.email"
+      />
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        placeholder="Password"
+        [(ngModel)]="nuevoUsuario.password"
+      />
+    </div>
+    <div class="form-group">
+      <label for="image">Avatar image</label>
+      <input
+        type="file"
+        class="form-control"
+        id="avatar"
+        name="avatar"
+        #fileImage
+        (change)="changeImage(fileImage)"
+      />
+    </div>
+    <img
+      *ngIf="nuevoUsuario.avatar"
+      [src]="nuevoUsuario.avatar"
+      alt=""
+      class="img-thumbnail"
+    />
+    <a
+      class="btn btn-danger mr-3"
+      [routerLink]="['/auth', 'login']"
+      routerLinkActive="router-link-active"
+      role="button"
+      >Go back</a
+    >
+    <button type="submit" class="btn btn-primary">Create account</button>
+  </form>
+</div>

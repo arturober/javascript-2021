@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
   <a class="navbar-brand" href="#">Angular Events</a>
-  <ul class="navbar-nav mr-auto">
+  <ul class="navbar-nav mr-auto" *ngIf="logged">
     <li class="nav-item">
       <a
         class="nav-link"
@@ -17,6 +17,11 @@
         [routerLinkActive]="['active']"
         >Añadir evento</a
       >
+    </li>
+  </ul>
+  <ul class="navbar-nav" *ngIf="logged">
+    <li class="nav-item">
+    <a class="nav-link logout-link" (click)="logout()">Salir</a>
     </li>
   </ul>
 </nav>

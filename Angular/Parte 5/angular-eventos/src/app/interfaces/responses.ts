@@ -8,3 +8,7 @@ export interface EventoResponse {
   evento: Evento;
 }
 
+export interface TokenResponse {
+  accessToken: string;
+}
+

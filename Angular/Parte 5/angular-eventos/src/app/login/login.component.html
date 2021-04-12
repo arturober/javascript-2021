@@ -1,0 +1,31 @@
+<form class="mt-4" role="form" (ngSubmit)="login()">
+  <legend>Bienvenido/a a mi página de eventos</legend>
+
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input
+      type="email"
+      class="form-control"
+      name="email"
+      id="email"
+      placeholder="Email"
+      required
+      [(ngModel)]="usuario.email"
+    />
+    <label for="password">Password:</label>
+    <input
+      type="password"
+      class="form-control"
+      name="password"
+      id="password"
+      placeholder="Password"
+      required
+      [(ngModel)]="usuario.password"
+    />
+  </div>
+  <p class="text-danger" *ngIf="error">Usuario y/o contraseña no válidos</p>
+  <a class="btn btn-danger mr-3" [routerLink]="['/auth/registro']" role="button"
+    >Create account</a
+  >
+  <button type="submit" class="btn btn-primary">Login</button>
+</form>
