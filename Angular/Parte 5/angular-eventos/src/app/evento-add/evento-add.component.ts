@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Evento } from '../interfaces/evento';
 import { EventosService } from '../services/eventos.service';
 
@@ -10,9 +11,11 @@ import { EventosService } from '../services/eventos.service';
 export class EventoAddComponent implements OnInit {
   nombreImagen = '';
   newEvento!: Evento;
-  @Output() added = new EventEmitter<Evento>();
 
-  constructor(private eventosService: EventosService) { }
+  constructor(
+    private eventosService: EventosService,
+    private router: Router
+  ) { }
 
   ngOnInit(): void {
     this.resetForm();
@@ -20,10 +23,7 @@ export class EventoAddComponent implements OnInit {
 
   addEvento(): void {
     this.eventosService.insert(this.newEvento).subscribe(
-      evento => {
-        this.added.emit(evento);
-        this.resetForm();
-      }
+      evento => this.router.navigate(['/eventos'])
     );
   }
 

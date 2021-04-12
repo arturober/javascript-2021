@@ -1,6 +1,8 @@
 <img class="card-img-top" [src]="evento.image" />
 <div class="card-body">
-  <h4 class="card-title">{{ evento.title | titlecase }}</h4>
+  <h4 class="card-title">
+    <a [routerLink]="['/eventos', evento.id]">{{ evento.title | titlecase }}</a>
+  </h4>
   <p class="card-text" [innerText]="evento.description"></p>
   <div>
     <button class="btn btn-danger ml-3" (click)="deleteEvento()">Delete</button>

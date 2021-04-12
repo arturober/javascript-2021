@@ -17,6 +17,12 @@ export class EventosService {
     );
   }
 
+  get(id: number): Observable<Evento> {
+    return this.http.get<EventoResponse>('eventos/' + id).pipe(
+      map(resp => resp.evento)
+    );
+  }
+
   insert(evento: Evento): Observable<Evento> {
     return this.http.post<EventoResponse>('eventos', evento).pipe(
       map(resp => resp.evento)

@@ -9,6 +9,8 @@ import { EventosFilterPipe } from './pipes/eventos-filter.pipe';
 import { EventoItemComponent } from './evento-item/evento-item.component';
 import { EventoAddComponent } from './evento-add/evento-add.component';
 import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
+import { AppRoutingModule } from './app-routing.module';
+import { EventoDetailComponent } from './evento-detail/evento-detail.component';
 
 @NgModule({
   declarations: [
@@ -16,12 +18,14 @@ import { BaseUrlInterceptor } from './interceptors/base-url.interceptor';
     EventosShowComponent,
     EventosFilterPipe,
     EventoItemComponent,
-    EventoAddComponent
+    EventoAddComponent,
+    EventoDetailComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutingModule
   ],
   providers: [
     {
