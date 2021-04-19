@@ -1,0 +1,16 @@
+<div class="col-2 pl-2">
+  <img [src]="producto.imageUrl" *ngIf="showImage" alt=""
+  [title]="producto.description | uppercase">
+</div>
+<div class="col-4">
+  <a [routerLink]="['/productos', producto.id]">
+    {{ producto.description }}
+  </a>
+</div>
+<div class="col">{{ producto.price | currency:'EUR' }}</div>
+<div class="col">{{ producto.available | date:'dd/MM/y' }}</div>
+<div class="col">
+  <star-rating [rating]="producto.rating"
+    (ratingChanged)="changeRating($event)">
+  </star-rating>
+</div>

@@ -1,0 +1,12 @@
+<form class="pt-4" role="form" (ngSubmit)="login()">
+  <legend>Bienvenido/a a mi página de eventos!</legend>
+  <div class="form-group">
+    <label for="email">Email:</label>
+    <input type="email" class="form-control" name="email" placeholder="Email" [(ngModel)]="email">
+    <label for="password">Password:</label>
+    <input type="password" class="form-control" name="password" placeholder="Password" [(ngModel)]="password">
+  </div>
+  <p class="text-danger" *ngIf="error">{{error}}</p>
+  <a class="btn btn-secondary" [routerLink]="['/register']" role="button">Crear cuenta</a>
+  <button type="submit" class="btn btn-primary ml-4">Login</button>
+</form>

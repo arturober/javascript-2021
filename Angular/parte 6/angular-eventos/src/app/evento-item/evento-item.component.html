@@ -1,0 +1,18 @@
+<img class="card-img-top" [src]="evento.image" [routerLink]="['/eventos', evento.id]">
+<div class="card-body">
+  <h4 class="card-title" [routerLink]="['/eventos', evento.id]">{{evento.name}}</h4>
+  <p class="card-text">
+    {{evento.description}}
+  </p>
+  <div class="row mr-4 align-items-center">
+    <img [src]="evento.creator.avatar" class="rounded-circle col" style="width: 50px;">
+    <div class="col">
+        <small>{{evento.creator.name}}</small>
+    </div>
+    <button class="btn btn-danger" (click)="deleteEvento()">Delete</button>
+  </div>
+</div>
+<div class="card-footer text-muted">
+  {{evento.date}}
+  <span class="float-right">{{evento.price}}€</span>
+</div>

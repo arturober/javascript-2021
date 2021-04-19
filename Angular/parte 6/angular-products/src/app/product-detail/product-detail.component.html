@@ -1,0 +1,21 @@
+<div class="card">
+  <div class="card-header bg-primary text-white">
+    {{producto.description}}
+  </div>
+  <div class="card-block p-3 text-center">
+    <img [src]="producto.imageUrl" alt="">
+    <div>Price: {{ producto.price | currency:'EUR':'symbol' }}</div>
+    <div>Available since: {{ producto.available | date:'dd/MM/y' }}</div>
+    <div>
+      <star-rating [rating]="producto.rating" (ratingChanged)="changeRating($event)"></star-rating>
+    </div>
+    <div class="mt-1">
+      <button type="button" class="btn btn-danger" (click)="goBack()">
+        Volver
+      </button>
+      <button type="button" class="btn btn-success ml-4" (click)="edit()">
+        Editar producto
+      </button>
+    </div>
+  </div>
+</div>

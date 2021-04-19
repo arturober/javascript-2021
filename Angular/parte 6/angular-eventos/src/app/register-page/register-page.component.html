@@ -1,0 +1,57 @@
+<form class="mt-4" role="form" #formRegistro="ngForm" (ngSubmit)="registrarse()">
+  <legend>Crea una cuenta</legend>
+
+  <div class="form-group">
+    <label for="nombre">Name:</label>
+    <input type="text" class="form-control" name="name" placeholder="Name"
+    [(ngModel)]="user.name" required #nameModel="ngModel"
+    [ngClass]="validClasses(nameModel, 'is-valid', 'is-invalid')">
+    <div class="invalid-feedback" *ngIf="nameModel.errors">
+      Debes escribir tu nombre
+    </div>
+  </div>
+
+  <div ngModelGroup="repiteEmail" #repiteEmailModel="ngModelGroup" sameValue>
+    <div class="form-group">
+      <label for="correo">Email:</label>
+      <input type="email" class="form-control" name="email" placeholder="Email"
+      [(ngModel)]="user.email" required #emailModel="ngModel"
+      [ngClass]="validClasses(emailModel, 'is-valid', 'is-invalid')">
+      <div class="invalid-feedback" *ngIf="emailModel.errors">
+        Debes escribir tu correo
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="correo">Repeat Email:</label>
+      <input type="email" class="form-control" name="email2" placeholder="Email" ngModel
+      [ngClass]="validClasses(repiteEmailModel, 'is-valid', 'is-invalid')">
+      <div class="invalid-feedback" *ngIf="repiteEmailModel.errors">
+        Los correos no coinciden
+      </div>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input type="password" class="form-control" name="password" placeholder="Password"
+      [(ngModel)]="user.password" required  #passModel="ngModel"
+      [ngClass]="validClasses(passModel, 'is-valid', 'is-invalid')">
+      <div class="invalid-feedback" *ngIf="passModel.errors">
+        Debes introducir una contraseña
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="image">Avatar image</label>
+    <input type="file" class="form-control" name="avatar"
+      ngModel required #avatarFile #avatarModel="ngModel" (change)="changeImage(avatarFile)"
+      [ngClass]="validClasses(avatarModel, 'is-valid', 'is-invalid')">
+      <div class="invalid-feedback" *ngIf="avatarModel.errors">
+        Debes elegir una imagen
+      </div>
+  </div>
+  <div>
+    <img [src]="user.avatar" class="img-thumbnail">
+  </div>
+  <a class="btn btn-secondary" [routerLink]="['/login']" role="button">Cancelar</a>
+  <button type="submit" class="btn btn-primary ml-4" [disabled]="formRegistro.invalid">Registrarse</button>
+</form>

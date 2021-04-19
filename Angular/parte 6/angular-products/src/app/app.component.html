@@ -1,0 +1,14 @@
+<nav class="navbar navbar-expand navbar-dark bg-dark mb-4">
+  <a class="navbar-brand" [routerLink]="['/welcome']">{{title}}</a>
+  <ul class="navbar-nav mr-auto">
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/welcome']" [routerLinkActive]="['active']">Welcome</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" [routerLink]="['/productos']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true }">Products</a>
+    </li>
+  </ul>
+</nav>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,5 @@
+<mgl-map [style]="'mapbox://styles/mapbox/streets-v11'" [zoom]="[zoom]" [center]="[lng, lat]">
+  <mgl-marker [lngLat]="[lng, lat]"></mgl-marker>
+  <mgl-control mglGeocoder (result)="changePosition($event.result)">
+  </mgl-control>
+</mgl-map>

@@ -1,0 +1,68 @@
+<form class="mt-4" (ngSubmit)="addEvento()" #formEvento="ngForm">
+  <div class="form-group">
+    <label for="name">Nombre</label>
+    <input type="text" class="form-control" name="title" minlength="5"
+    [(ngModel)]="newEvento.name" #titleModel="ngModel" placeholder="Enter name" required
+    [ngClass]="validClasses(titleModel, 'is-valid', 'is-invalid')">
+
+    <div class="invalid-feedback" *ngIf="titleModel.errors && titleModel.errors.required">
+      Debes proporcionar un título
+    </div>
+    <div class="invalid-feedback" *ngIf="titleModel.errors && titleModel.errors.minlength">
+      Al campo le faltan al menos
+      {{titleModel.errors.minlength.requiredLength - titleModel.errors.minlength.actualLength}}
+      caracteres
+    </div>
+
+  </div>
+  <div class="form-group">
+    <label for="date">Fecha</label>
+    <input type="date" class="form-control" name="date" [(ngModel)]="newEvento.date"
+    required [minDate]="fechaHoy" #dateModel="ngModel"
+    [ngClass]="validClasses(dateModel, 'is-valid', 'is-invalid')">
+
+    <div class="invalid-feedback" *ngIf="dateModel.errors && dateModel.errors.required">
+      Debes proporcionar una fecha
+    </div>
+    <div class="invalid-feedback" *ngIf="dateModel.errors && dateModel.errors.minDate">
+      La fecha debe ser como mínimo {{fechaHoy | date:'dd/MM/y'}}
+    </div>
+
+  </div>
+  <div class="form-group">
+    <label for="description">Descripción</label>
+    <textarea class="form-control" name="description" rows="3"
+    [(ngModel)]="newEvento.description" required #descModel="ngModel"
+    [ngClass]="validClasses(descModel, 'is-valid', 'is-invalid')"></textarea>
+
+    <div class="invalid-feedback" *ngIf="descModel.errors">
+      Debes proporcionar una descripción
+    </div>
+
+  </div>
+  <div class="form-group">
+    <label for="price">Precio</label>
+    <input type="number" class="form-control" name="price" [(ngModel)]="newEvento.price"
+      min="0.00" max="10000.00" step="0.01" required #priceModel="ngModel"
+      [ngClass]="validClasses(priceModel, 'is-valid', 'is-invalid')">
+
+      <div class="invalid-feedback" *ngIf="priceModel.errors">
+        Debes proporcionar un precio
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="image">Imagen</label>
+    <input type="file" class="form-control" name="image"
+      #fileInput #imageModel="ngModel" ngModel
+      required (change)="changeImage(fileInput)"
+      [ngClass]="validClasses(imageModel, 'is-valid', 'is-invalid')">
+
+    <div class="invalid-feedback" *ngIf="imageModel.errors">
+      Debes proporcionar una imagen
+    </div>
+  </div>
+  <img [src]="newEvento.image" alt="" class="img-thumbnail">
+  <button type="submit" class="btn btn-primary" [disabled]="formEvento.invalid">Create</button>
+</form>
+
+<!-- <p>{{newEvento | json}}</p> -->
